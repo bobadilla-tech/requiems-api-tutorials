@@ -1,6 +1,7 @@
 # Contributing — Adding New Examples
 
-Thanks for contributing to requiems-api-tutorials. This guide covers everything you need to add a new example project.
+Thanks for contributing to requiems-api-tutorials. This guide covers everything
+you need to add a new example project.
 
 ---
 
@@ -38,19 +39,21 @@ Place the directory at the **repo root** (not nested).
 
 Every project must include:
 
-| File | Purpose |
-|------|---------|
-| `README.md` | What it does, prerequisites, setup, example output |
-| `.env.example` | Template with `REQUIEMS_API=your_api_key_here` |
-| `.gitignore` | Exclude `.env`, build artifacts, `node_modules`, `.venv`, etc. |
+| File           | Purpose                                                        |
+| -------------- | -------------------------------------------------------------- |
+| `README.md`    | What it does, prerequisites, setup, example output             |
+| `.env.example` | Template with `REQUIEMS_API=your_api_key_here`                 |
+| `.gitignore`   | Exclude `.env`, build artifacts, `node_modules`, `.venv`, etc. |
 
 ---
 
 ## Environment & Secrets
 
 - **Never commit API keys.**
-- The root `.env` holds `REQUIEMS_API` and is the single source of truth for local development.
-- Projects should either read `../.env` (relative path) or document that users copy it:
+- The root `.env` holds `REQUIEMS_API` and is the single source of truth for
+  local development.
+- Projects should either read `../.env` (relative path) or document that users
+  copy it:
   ```bash
   cp ../.env .env
   ```
@@ -121,11 +124,11 @@ select = ["E", "F", "I"]
 
 ### Other Languages
 
-| Language | Package manager | Lint/format |
-|----------|----------------|-------------|
-| Go | `go mod` | `go fmt`, `golangci-lint` |
-| Ruby | `bundler` | `rubocop` |
-| Rust | `cargo` | `rustfmt`, `clippy` |
+| Language | Package manager | Lint/format               |
+| -------- | --------------- | ------------------------- |
+| Go       | `go mod`        | `go fmt`, `golangci-lint` |
+| Ruby     | `bundler`       | `rubocop`                 |
+| Rust     | `cargo`         | `rustfmt`, `clippy`       |
 
 ---
 
@@ -151,31 +154,33 @@ cp ../.env .env
 ```
 
 **`index.js`**:
+
 ```javascript
-import 'dotenv/config'
-import express from 'express'
+import "dotenv/config";
+import express from "express";
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
 
-app.post('/qr', async (req, res) => {
-  const { text } = req.body
-  const response = await fetch('https://api.requiems.xyz/v1/tech/qr', {
-    method: 'POST',
+app.post("/qr", async (req, res) => {
+  const { text } = req.body;
+  const response = await fetch("https://api.requiems.xyz/v1/tech/qr", {
+    method: "POST",
     headers: {
-      'requiems-api-key': process.env.REQUIEMS_API,
-      'Content-Type': 'application/json'
+      "requiems-api-key": process.env.REQUIEMS_API,
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ text })
-  })
-  const { data } = await response.json()
-  res.json(data)
-})
+    body: JSON.stringify({ text }),
+  });
+  const { data } = await response.json();
+  res.json(data);
+});
 
-app.listen(3000, () => console.log('Listening on http://localhost:3000'))
+app.listen(3000, () => console.log("Listening on http://localhost:3000"));
 ```
 
 **`.gitignore`**:
+
 ```
 node_modules/
 .env
@@ -183,6 +188,7 @@ dist/
 ```
 
 **`package.json`** scripts:
+
 ```json
 {
   "scripts": {
@@ -214,6 +220,7 @@ cp ../.env .env
 ```
 
 **`main.py`**:
+
 ```python
 import os
 import sys
@@ -243,17 +250,20 @@ if __name__ == "__main__":
 ```
 
 **Run it:**
+
 ```bash
 uv run python main.py "Ths is a tset sentance."
 ```
 
 **Lint and format:**
+
 ```bash
 ruff check .
 ruff format .
 ```
 
 **`.gitignore`**:
+
 ```
 .env
 .venv/
@@ -268,7 +278,7 @@ __pycache__/
 
 Each project's `README.md` should follow this structure:
 
-```markdown
+````markdown
 # {project-name}
 
 One sentence describing what this example demonstrates and which API it uses.
@@ -286,32 +296,34 @@ Short description (2-3 sentences) of the user-facing functionality.
 ## Setup
 
 \```bash
+
 # Install dependencies
-pnpm install   # or: uv sync
+
+pnpm install # or: uv sync
 
 # Copy env file
-cp ../.env .env   # or add REQUIEMS_API=your_key to .env
+
+cp ../.env .env # or add REQUIEMS_API=your_key to .env
 
 # Run
-pnpm dev   # or: uv run python main.py
-\```
+
+pnpm dev # or: uv run python main.py \```
 
 ## Example Output
 
-\```
-(paste real output here)
-\```
+\``` (paste real output here) \```
 
 ## API Used
 
 - [`POST /v1/{endpoint}`](https://requiems.xyz/en/apis) — brief description
-```
+````
 
 ---
 
 ## Checklist Before Submitting
 
-- [ ] Project runs from scratch: `pnpm install && pnpm dev` or `uv run python main.py`
+- [ ] Project runs from scratch: `pnpm install && pnpm dev` or
+      `uv run python main.py`
 - [ ] No API key committed (check with `git diff --cached`)
 - [ ] `.env.example` present with all required variables
 - [ ] `.gitignore` excludes `.env`, build artifacts, and dependency directories
@@ -329,4 +341,6 @@ API docs are available two ways:
 - **Online**: https://requiems.xyz/en/apis
 - **Local**: `../requiems-api/docs/apis/{category}/{endpoint}.md`
 
-Categories: `ai-computer-vision`, `animals`, `email`, `entertainment`, `finance`, `health-wellness`, `internet-technology`, `miscellaneous`, `places`, `text`, `transportation`, `weather`
+Categories: `ai-computer-vision`, `animals`, `email`, `entertainment`,
+`finance`, `health-wellness`, `internet-technology`, `miscellaneous`, `places`,
+`text`, `transportation`, `weather`
