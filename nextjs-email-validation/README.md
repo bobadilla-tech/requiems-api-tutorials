@@ -1,20 +1,20 @@
 # Next.js Email Validation with Requiems API
 
-A YouTube tutorial project demonstrating real-time email validation in a
+A tutorial project demonstrating real-time email validation in a
 Next.js 16 signup flow using the [Requiems API](https://requiems.xyz).
 
 ## What this shows
 
-| Feature | File |
-|---|---|
-| Requiems API client (server-only) | [src/lib/requiems.ts](src/lib/requiems.ts) |
-| Server-side proxy route (keeps key secret) | [src/app/api/validate-email/route.ts](src/app/api/validate-email/route.ts) |
-| Better Auth config + email validation hooks | [src/lib/auth.ts](src/lib/auth.ts) |
-| Debounced real-time validation form | [src/components/SignupForm.tsx](src/components/SignupForm.tsx) |
-| All 8 API response fields displayed | [src/components/EmailValidationCard.tsx](src/components/EmailValidationCard.tsx) |
-| Protected dashboard (session required) | [src/app/dashboard/page.tsx](src/app/dashboard/page.tsx) |
-| Next.js 16 proxy (route protection) | [proxy.ts](proxy.ts) |
-| Typed env validation | [src/env.ts](src/env.ts) |
+| Feature                                     | File                                                                             |
+| ------------------------------------------- | -------------------------------------------------------------------------------- |
+| Requiems API client (server-only)           | [src/lib/requiems.ts](src/lib/requiems.ts)                                       |
+| Server-side proxy route (keeps key secret)  | [src/app/api/validate-email/route.ts](src/app/api/validate-email/route.ts)       |
+| Better Auth config + email validation hooks | [src/lib/auth.ts](src/lib/auth.ts)                                               |
+| Debounced real-time validation form         | [src/components/SignupForm.tsx](src/components/SignupForm.tsx)                   |
+| All 8 API response fields displayed         | [src/components/EmailValidationCard.tsx](src/components/EmailValidationCard.tsx) |
+| Protected dashboard (session required)      | [src/app/dashboard/page.tsx](src/app/dashboard/page.tsx)                         |
+| Next.js 16 proxy (route protection)         | [proxy.ts](proxy.ts)                                                             |
+| Typed env validation                        | [src/env.ts](src/env.ts)                                                         |
 
 ## Architecture
 
@@ -44,11 +44,11 @@ cp .env.example .env.local
 
 Required env vars:
 
-| Variable | Description |
-|---|---|
-| `REQUIEMS_API` | Your Requiems API key — get one at [requiems.xyz](https://requiems.xyz) |
-| `BETTER_AUTH_SECRET` | Random secret ≥ 32 chars (`openssl rand -base64 32`) |
-| `BETTER_AUTH_URL` | Base URL of your app (`http://localhost:3000` for local dev) |
+| Variable             | Description                                                             |
+| -------------------- | ----------------------------------------------------------------------- |
+| `REQUIEMS_API`       | Your Requiems API key — get one at [requiems.xyz](https://requiems.xyz) |
+| `BETTER_AUTH_SECRET` | Random secret ≥ 32 chars (`openssl rand -base64 32`)                    |
+| `BETTER_AUTH_URL`    | Base URL of your app (`http://localhost:3000` for local dev)            |
 
 Run the dev server:
 
@@ -60,15 +60,15 @@ Open [http://localhost:3000](http://localhost:3000) — it redirects to `/signup
 
 ## Test emails for the YouTube demo
 
-| Email | What it triggers |
-|---|---|
-| `demo@gmail.com` | Happy path — all 8 fields green |
-| `user@gmial.com` | Typo suggestion → click to correct to `gmail.com` |
-| `not-an-email` | `syntax_valid: false` — format invalid |
-| `test@mailinator.com` | `disposable: true` — blocked with alert |
-| `user@nonexistent-xyz-domain-12345.com` | `mx_valid: false` — no DNS records |
-| `User+Tag@Googlemail.COM` | Normalization demo → `user@gmail.com` |
-| `test@yaho.com` | Another typo → suggestion `yahoo.com` |
+| Email                                   | What it triggers                                  |
+| --------------------------------------- | ------------------------------------------------- |
+| `demo@gmail.com`                        | Happy path — all 8 fields green                   |
+| `user@gmial.com`                        | Typo suggestion → click to correct to `gmail.com` |
+| `not-an-email`                          | `syntax_valid: false` — format invalid            |
+| `test@mailinator.com`                   | `disposable: true` — blocked with alert           |
+| `user@nonexistent-xyz-domain-12345.com` | `mx_valid: false` — no DNS records                |
+| `User+Tag@Googlemail.COM`               | Normalization demo → `user@gmail.com`             |
+| `test@yaho.com`                         | Another typo → suggestion `yahoo.com`             |
 
 ## API response fields
 
